@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ca">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Vagrant: entorns de desenvolupament fàcils</title>
+
+		<meta name="description" content="Vagrant: entorns de desenvolupament fàcils">
+		<meta name="author" content="Alex Muntada">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<section>
+						<h1><a href="http://www.vagrantup.com/">Vagrant</a></h1>
+						<h3>Entorns de desenvolupament fàcils</h3>
+						<p>per <a href="http://alexm.org/">Alex Muntada</a> / <a href="http://twitter.com/alexmuntada">@alexmuntada</a></p>
+						<p><small><a href="http://creativecommons.org/licenses/by-sa/4.0/deed.es_ES" title="Licencia Creative Commons de Reconocimiento y Compartirigual, versión 4.0">cc-by-sa</a></small></p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Instal·lació</h1>
+					</section>
+					<section>
+						<h2>Dependències</h2>
+						<ul>
+							<li>Una versió recent de <a href="http://www.virtualbox.org/">VirtualBox</a></li>
+							<li>Opcionalment les <em>Guest Additions</em></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Descàrrega</h2>
+						<ul>
+							<li>Paquets a la <a href="https://www.vagrantup.com/downloads.html">web oficial</a></li>
+							<li>Repositoris de paquets a les distribucions </li>
+							<li><a href="https://github.com/mitchellh/vagrant">Codi font</a> a GitHub</li>
+							<li class="fragment"><s>Gema a RubyGems</s></li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Inici</h1>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Provisió</h1>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Xarxa</h1>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Caixes</h1>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Multimàquina</h1>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Proveïdors</h1>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Extensions</h1>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Conclusions</h1>
+					</section>
+					<section>
+						<ul>
+							<li>Molt fàcil d'utilitzar per fer proves ràpides.</li>
+							<li class="fragment">Prou potent per a configurar escenaris complexos.</li>
+							<li class="fragment">Molt útil per crear entorns de prova.</li>
+							<li class="fragment">Permet compartir fàcilment els entorns.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>¿Preguntes?</h2>
+						<p>per Alex Muntada / @alexmuntada</p>
+					</section>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
