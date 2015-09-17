@@ -139,6 +139,109 @@ $ vagrant ssh -c uptime
 					<section>
 						<h1>Provisió</h1>
 					</section>
+					<section>
+						<h2>Provisors</h2>
+						<ul>
+							<li>File</li>
+							<li>Shell</li>
+							<li>Ansible</li>
+							<li>CFEngine</li>
+							<li>Chef</li>
+							<li>Docker</li>
+							<li>Puppet</li>
+							<li>Salt</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Vagrantfile</h2>
+						<pre><code>
+Vagrant::Config.run do |config|
+  # ...
+
+  # Provision via shell
+  config.vm.provision :shell, path: "provision.sh"
+end
+						</code></pre>
+					</section>
+					<section>
+						<h2>provision.sh</h2>
+						<pre><code>
+#!/bin/sh
+
+set -e
+
+sed -i 's,http:[^ ]*,mirror://mirrors.ubuntu.com/mirrors.txt,' /etc/apt/sources.list
+export DEBIAN_FRONTEND=noninteractive
+apt update
+apt install -yy apache2
+
+a2enmod cgi
+service apache2 restart
+						</code></pre>
+					</section>
+					<section>
+						<h2>vagrant provision</h2>
+						<pre><code>
+$ vagrant provision
+==&gt; default: Running provisioner: shell...
+    default: Running: /tmp/vagrant-shell20150917-7996-uhr3lo.sh
+==&gt; default: stdin: is not a tty
+==&gt; default: WARNING: 
+==&gt; default: apt
+==&gt; default:  
+==&gt; default: does not have a stable CLI interface yet. 
+==&gt; default: Use with caution in scripts.
+==&gt; default: Ign http://ubuntu.uc3m.es/ubuntu/ trusty InRelease
+==&gt; default: Ign http://ubuntu.uc3m.es/ubuntu/ trusty-updates InRelease
+==&gt; default: Ign http://ubuntu.uc3m.es/ubuntu/ trusty-security InRelease
+==&gt; default: Get:1 http://ubuntu.uc3m.es/ubuntu/ trusty Release.gpg [933 B]
+==&gt; default: Get:2 http://ubuntu.uc3m.es/ubuntu/ trusty-updates Release.gpg [933 B]
+==&gt; default: Get:3 http://ubuntu.uc3m.es/ubuntu/ trusty-security Release.gpg [933 B]
+==&gt; default: Get:4 http://ubuntu.uc3m.es/ubuntu/ trusty Release [58.5 kB]
+==&gt; default: Get:5 http://ubuntu.uc3m.es/ubuntu/ trusty-updates Release [63.5 kB]
+==&gt; default: Get:6 http://ubuntu.uc3m.es/ubuntu/ trusty-security Release [63.5 kB]
+==&gt; default: Get:7 http://ubuntu.uc3m.es/ubuntu/ trusty/main Sources [1,064 kB]
+==&gt; default: Get:8 http://ubuntu.uc3m.es/ubuntu/ trusty/universe Sources [6,399 kB]
+==&gt; default: Get:9 http://ubuntu.uc3m.es/ubuntu/ trusty/main amd64 Packages [1,350 kB]
+==&gt; default: Get:10 http://ubuntu.uc3m.es/ubuntu/ trusty/universe amd64 Packages [5,859 kB]
+==&gt; default: Get:11 http://ubuntu.uc3m.es/ubuntu/ trusty/main Translation-en [762 kB]
+==&gt; default: Get:12 http://ubuntu.uc3m.es/ubuntu/ trusty/universe Translation-en [4,089 kB]
+==&gt; default: Get:13 http://ubuntu.uc3m.es/ubuntu/ trusty-updates/main Sources [228 kB]
+==&gt; default: Get:14 http://ubuntu.uc3m.es/ubuntu/ trusty-updates/universe Sources [131 kB]
+==&gt; default: Get:15 http://ubuntu.uc3m.es/ubuntu/ trusty-updates/main amd64 Packages [599 kB]
+==&gt; default: Get:16 http://ubuntu.uc3m.es/ubuntu/ trusty-updates/universe amd64 Packages [302 kB]
+==&gt; default: Get:17 http://ubuntu.uc3m.es/ubuntu/ trusty-updates/main Translation-en [288 kB]
+==&gt; default: Get:18 http://ubuntu.uc3m.es/ubuntu/ trusty-updates/universe Translation-en [160 kB]
+==&gt; default: Get:19 http://ubuntu.uc3m.es/ubuntu/ trusty-security/main Sources [91.1 kB]
+==&gt; default: Get:20 http://ubuntu.uc3m.es/ubuntu/ trusty-security/universe Sources [29.0 kB]
+==&gt; default: Get:21 http://ubuntu.uc3m.es/ubuntu/ trusty-security/main amd64 Packages [326 kB]
+==&gt; default: Get:22 http://ubuntu.uc3m.es/ubuntu/ trusty-security/universe amd64 Packages [113 kB]
+==&gt; default: Get:23 http://ubuntu.uc3m.es/ubuntu/ trusty-security/main Translation-en [178 kB]
+==&gt; default: Get:24 http://ubuntu.uc3m.es/ubuntu/ trusty-security/universe Translation-en [65.9 kB]
+==&gt; default: Ign http://ubuntu.uc3m.es/ubuntu/ trusty/main Translation-en_US
+==&gt; default: Ign http://ubuntu.uc3m.es/ubuntu/ trusty/universe Translation-en_US
+==&gt; default: Fetched 22.2 MB in 18s (1,173 kB/s)
+==&gt; default: Reading package lists...
+==&gt; default: WARNING: 
+==&gt; default: apt
+==&gt; default:  
+==&gt; default: does not have a stable CLI interface yet. 
+==&gt; default: Use with caution in scripts.
+==&gt; default: Reading package lists...
+==&gt; default: Building dependency tree...
+==&gt; default: Reading state information...
+==&gt; default: apache2 is already the newest version.
+==&gt; default: 0 upgraded, 0 newly installed, 0 to remove and 84 not upgraded.
+==&gt; default: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 10.0.2.15. Set the 'ServerName' directive globally to suppress this message
+==&gt; default: Your MPM seems to be threaded. Selecting cgid instead of cgi.
+==&gt; default: Enabling module cgid.
+==&gt; default: To activate the new configuration, you need to run:
+==&gt; default:   service apache2 restart
+==&gt; default:  * Restarting web server apache2
+==&gt; default: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 10.0.2.15. Set the 'ServerName' directive globally to suppress this message
+==&gt; default:    ...done.
+						</code></pre>
+					</section>
 				</section>
 
 				<section>
