@@ -85,8 +85,6 @@ the comments in the Vagrantfile as well as documentation on
 						<pre><code>
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty64"
-
-  # ...
 end
 						</code></pre>
 					</section>
@@ -207,9 +205,6 @@ $ vagrant ssh -c uptime
 						<h2>Vagrantfile</h2>
 						<pre><code>
 Vagrant::Config.run do |config|
-  # ...
-
-  # Provision via shell
   config.vm.provision :shell, path: "provision.sh"
 end
 						</code></pre>
