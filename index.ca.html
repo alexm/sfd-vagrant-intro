@@ -118,6 +118,47 @@ Bringing machine 'default' up with 'virtualbox' provider...
 						</code></pre>
 					</section>
 					<section>
+						<h2>vagrant status</h2>
+						<pre><code>
+$ vagrant status
+Current machine states:
+
+default                   running (virtualbox)
+
+The VM is running. To stop this VM, you can run `vagrant halt` to
+shut it down forcefully, or you can run `vagrant suspend` to simply
+suspend the virtual machine. In either case, to restart it again,
+simply run `vagrant up`.
+						</code></pre>
+					</section>
+					<section>
+						<h2>vagrant reload</h2>
+						<pre><code>
+$ vagrant reload
+==&gt; default: Attempting graceful shutdown of VM...
+==&gt; default: Checking if box 'ubuntu/trusty64' is up to date...
+==&gt; default: A newer version of the box 'ubuntu/trusty64' is available! You currently
+==&gt; default: have version '20150609.0.7'. The latest is version '20150911.0.0'. Run
+==&gt; default: `vagrant box update` to update.
+==&gt; default: Clearing any previously set forwarded ports...
+==&gt; default: Clearing any previously set network interfaces...
+==&gt; default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+==&gt; default: Forwarding ports...
+    default: 22 =&gt; 2222 (adapter 1)
+==&gt; default: Booting VM...
+==&gt; default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2222
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+    default: Warning: Connection timeout. Retrying...
+==&gt; default: Machine booted and ready!
+==&gt; default: Checking for guest additions in VM...
+==&gt; default: Mounting shared folders...
+    default: /vagrant =&gt; /scratch/alexm/git/sfd-vagrant-intro
+						</code></pre>
+					</section>
+					<section>
 						<h2>vagrant ssh</h2>
 						<pre><code>
 $ vagrant ssh
