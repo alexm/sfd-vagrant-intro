@@ -81,6 +81,16 @@ the comments in the Vagrantfile as well as documentation on
 						</code></pre>
 					</section>
 					<section>
+						<h2>Vagrantfile</h2>
+						<pre><code>
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty64"
+
+  # ...
+end
+						</code></pre>
+					</section>
+					<section>
 						<h2>vagrant up</h2>
 						<pre><code>
 $ vagrant up
