@@ -81,15 +81,6 @@ the comments in the Vagrantfile as well as documentation on
 						</code></pre>
 					</section>
 					<section>
-						<h2>Vagrantfile</h2>
-						<pre><code>
-Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/trusty64"
-  # config.vm.box_url = "http://www.example.com/name.box"
-end
-						</code></pre>
-					</section>
-					<section>
 						<h2>vagrant up</h2>
 						<pre><code>
 $ vagrant up
@@ -187,13 +178,42 @@ $ vagrant ssh -c uptime
 
 				<section>
 					<section>
-						<h1>Provisió</h1>
+						<h1>Configuració</h1>
+					</section>
+					<section>
+						<h2>Caixa</h2>
+						<pre><code>
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty64"
+  # config.vm.box = "boxname"
+  # config.vm.box_url = "http://www.example.com/name.box"
+end
+						</code></pre>
+					</section>
+					<section>
+						<h2>Proveïdor</h2>
+						<pre><code>
+Vagrant.configure(2) do |config|
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.memory = "1024"
+  end
+end
+						</code></pre>
+					</section>
+					<section>
+						<h2>Carpetes</h2>
+						<pre><code>
+Vagrant.configure(2) do |config|
+  config.vm.synced_folder "../data", "/vagrant_data"
+end
+						</code></pre>
 					</section>
 					<section>
 						<h2>Provisors</h2>
 						<ul>
-							<li>File</li>
-							<li>Shell</li>
+							<li><em>file</em></li>
+							<li><em>shell</em></li>
 							<li>Ansible</li>
 							<li>CFEngine</li>
 							<li>Chef</li>
@@ -203,7 +223,7 @@ $ vagrant ssh -c uptime
 						</ul>
 					</section>
 					<section>
-						<h2>Vagrantfile</h2>
+						<h3><em>shell</em></h3>
 						<pre><code>
 Vagrant::Config.run do |config|
   config.vm.provision :shell, path: "provision.sh"
@@ -211,7 +231,7 @@ end
 						</code></pre>
 					</section>
 					<section>
-						<h2>provision.sh</h2>
+						<h3>provision.sh</h3>
 						<pre><code>
 #!/bin/sh
 
@@ -227,7 +247,7 @@ service apache2 restart
 						</code></pre>
 					</section>
 					<section>
-						<h2>vagrant provision</h2>
+						<h3>vagrant provision</h3>
 						<pre><code>
 $ vagrant provision
 ==&gt; default: Running provisioner: shell...
@@ -289,14 +309,17 @@ $ vagrant provision
 ==&gt; default:    ...done.
 						</code></pre>
 					</section>
-				</section>
-
-				<section>
 					<section>
-						<h1>Xarxa</h1>
+						<h2>Xarxa</h2>
+						<ul>
+							<li>Redirecció de ports</li>
+							<li>Xarxa privada</li>
+							<li>Multimàquina</li>
+							<li>Xarxa pública</li>
+						</ul>
 					</section>
 					<section>
-						<h2>Redirecció de ports</h2>
+						<h3>Redirecció de ports</h3>
 						<pre><code>
 Vagrant::Config.run do |config|
   config.vm.network "forwarded_port", guest: 80, host: 8080
@@ -304,7 +327,7 @@ end
 						</code></pre>
 					</section>
 					<section>
-						<h2>Xarxa privada</h2>
+						<h3>Xarxa privada</h3>
 						<pre><code>
 Vagrant::Config.run do |config|
   config.vm.network "private_network", type: "dhcp"
@@ -313,8 +336,26 @@ end
 						</code></pre>
 					</section>
 					<section>
-						<h2>Xarxa pública</h2>
-						<p>Poc habitual i els detalls depenen del proveïdor.</p>
+						<h3>Multimàquina</h3>
+						<pre><code>
+Vagrant.configure(2) do |config|
+  config.vm.define "client" do |c|
+    c.vm.hostname = "client"
+    c.vm.network :private_network, ip: "10.10.10.2"
+  end
+  config.vm.define "server" do |s|
+    s.vm.hostname = "server"
+    s.vm.network :private_network, ip: "10.10.10.3"
+  end
+end
+						</code></pre>
+					</section>
+					<section>
+						<h3>Xarxa pública</h3>
+						<ul>
+							<li>Poc habitual i els detalls depenen del proveïdor.</li>
+							<li>En el futur segurament serà substituïda per ponts.</li>
+						</ul>
 					</section>
 				</section>
 
@@ -349,27 +390,6 @@ $ vagrant box add package.box --name sfd2015
 $ vagrant box list
 sfd2015              (virtualbox, 0)
 ubuntu/trusty64      (virtualbox, 14.04)
-						</code></pre>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<h1>Multimàquina</h1>
-					</section>
-					<section>
-						<h2>Vagrantfile</h2>
-						<pre><code>
-Vagrant.configure(2) do |config|
-  config.vm.define "client" do |c|
-    c.vm.hostname = "client"
-    c.vm.network :private_network, ip: "10.10.10.2"
-  end
-  config.vm.define "server" do |s|
-    s.vm.hostname = "server"
-    s.vm.network :private_network, ip: "10.10.10.3"
-  end
-end
 						</code></pre>
 					</section>
 				</section>
