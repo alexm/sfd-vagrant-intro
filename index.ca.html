@@ -356,6 +356,21 @@ ubuntu/trusty64      (virtualbox, 14.04)
 					<section>
 						<h1>Multimàquina</h1>
 					</section>
+					<section>
+						<h2>Vagrantfile</h2>
+						<pre><code>
+Vagrant.configure(2) do |config|
+  config.vm.define "client" do |c|
+    c.vm.hostname = "client"
+    c.vm.network :private_network, ip: "10.10.10.2"
+  end
+  config.vm.define "server" do |s|
+    s.vm.hostname = "server"
+    s.vm.network :private_network, ip: "10.10.10.3"
+  end
+end
+						</code></pre>
+					</section>
 				</section>
 
 				<section>
